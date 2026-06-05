@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ferramentas digitais e IA para professores/as de línguas | Ana Fonseca</title>
+  <style>
+    :root {
+      --azul: #2F435C;
+      --azul-escuro: #24354A;
+      --branco: #FFFFFF;
+      --papel: #F7F5F0;
+      --toupe: #A89B8B;
+      --toupe-escuro: #7A6E60;
+      --toupe-claro: #EBE6D8;
+      --linha: rgba(47, 67, 92, 0.14);
+      --sombra: 0 18px 44px rgba(36, 53, 74, 0.14);
+      --raio: 22px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Aptos, Inter, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: var(--azul);
+      background:
+        radial-gradient(circle at 12% 0%, rgba(168, 155, 139, 0.25), transparent 28%),
+        linear-gradient(180deg, var(--papel) 0%, var(--branco) 52%, var(--papel) 100%);
+      line-height: 1.55;
+    }
+
+    .page {
+      width: min(1180px, calc(100% - 36px));
+      margin: 0 auto;
+    }
+
+    header {
+      padding: 54px 0 26px;
+    }
+
+    .brand-line {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 34px;
+      color: var(--toupe-escuro);
+      font-size: 0.95rem;
+      letter-spacing: 0.02em;
+    }
+
+    .brand-mark {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      color: var(--azul);
+    }
+
+    .brand-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--azul);
+      color: var(--branco);
+      display: inline-grid;
+      place-items: center;
+      font-weight: 800;
+      font-size: 0.9rem;
+      box-shadow: 0 8px 18px rgba(47,67,92,.18);
+    }
+
+    .hero {
+      background: var(--azul);
+      color: var(--branco);
+      border-radius: 34px;
+      padding: clamp(28px, 5vw, 58px);
+      box-shadow: var(--sombra);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto -90px -140px auto;
+      width: 330px;
+      height: 330px;
+      border-radius: 50%;
+      background: rgba(168, 155, 139, 0.32);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 880px;
+    }
+
+    .eyebrow {
+      color: var(--toupe-claro);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.76rem;
+      font-weight: 800;
+      margin: 0 0 12px;
+    }
+
+    h1 {
+      font-size: clamp(2.1rem, 5vw, 4.8rem);
+      line-height: 0.98;
+      margin: 0 0 20px;
+      letter-spacing: -0.055em;
+    }
+
+    .hero p {
+      max-width: 800px;
+      font-size: clamp(1rem, 1.8vw, 1.22rem);
+      color: rgba(255,255,255,.88);
+      margin: 0;
+    }
+
+    .meta-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin: 18px 0 0;
+    }
+
+    .meta-box {
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: 18px;
+      padding: 16px 18px;
+      color: rgba(255,255,255,.86);
+      backdrop-filter: blur(10px);
+    }
+
+    .meta-box strong {
+      display: block;
+      color: var(--branco);
+      font-size: 1.16rem;
+      margin-bottom: 2px;
+    }
+
+    .notice {
+      margin: 24px 0;
+      background: var(--toupe-claro);
+      border: 1px solid rgba(122,110,96,.24);
+      border-left: 8px solid var(--toupe);
+      border-radius: var(--raio);
+      padding: 20px 22px;
+      color: var(--azul-escuro);
+    }
+
+    .notice strong {
+      color: var(--azul);
+    }
+
+    .controls {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      background: rgba(247,245,240,.92);
+      border: 1px solid var(--linha);
+      border-radius: 24px;
+      padding: 14px;
+      margin: 24px 0;
+      box-shadow: 0 12px 30px rgba(36,53,74,.08);
+      backdrop-filter: blur(10px);
+    }
+
+    .controls-top {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    input[type="search"] {
+      width: 100%;
+      border: 1px solid var(--linha);
+      background: var(--branco);
+      color: var(--azul);
+      border-radius: 999px;
+      padding: 13px 18px;
+      font: inherit;
+      outline: none;
+    }
+
+    input[type="search"]:focus {
+      border-color: var(--azul);
+      box-shadow: 0 0 0 4px rgba(47,67,92,.10);
+    }
+
+    .view-buttons {
+      display: flex;
+      gap: 8px;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .view-btn, .filter-chip {
+      border: 1px solid var(--linha);
+      color: var(--azul);
+      background: var(--branco);
+      border-radius: 999px;
+      padding: 10px 14px;
+      cursor: pointer;
+      transition: .18s ease;
+      font-weight: 650;
+    }
+
+    .view-btn.active, .filter-chip.active, .view-btn:hover, .filter-chip:hover {
+      background: var(--azul);
+      color: var(--branco);
+      border-color: var(--azul);
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin: 22px 0 12px;
+      color: var(--toupe-escuro);
+      font-size: 0.96rem;
+    }
+
+    .summary-row strong {
+      color: var(--azul);
+    }
+
+    .cards {
+      display: grid;
+      gap: 18px;
+      margin-bottom: 36px;
+    }
+
+    .tool-card {
+      background: var(--branco);
+      border: 1px solid var(--linha);
+      border-radius: var(--raio);
+      padding: 24px;
+      box-shadow: 0 12px 30px rgba(36,53,74,.07);
+    }
+
+    .tool-card h3 {
+      font-size: clamp(1.35rem, 2.4vw, 2rem);
+      line-height: 1.1;
+      margin: 10px 0 18px;
+      letter-spacing: -0.02em;
+    }
+
+    .card-topline {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .category-pill, .category-mini {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      color: var(--azul);
+      background: var(--toupe-claro);
+      border: 1px solid rgba(122,110,96,.18);
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .01em;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .card-grid section {
+      background: var(--papel);
+      border-radius: 18px;
+      border: 1px solid var(--linha);
+      padding: 15px 16px;
+    }
+
+    .card-grid section.risk {
+      grid-column: 1 / -1;
+      background: linear-gradient(180deg, #fff, var(--toupe-claro));
+    }
+
+    h4 {
+      margin: 0 0 6px;
+      font-size: .82rem;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      color: var(--toupe-escuro);
+    }
+
+    p {
+      margin: 0;
+    }
+
+    .table-wrap {
+      display: none;
+      overflow-x: auto;
+      background: var(--branco);
+      border: 1px solid var(--linha);
+      border-radius: var(--raio);
+      box-shadow: 0 12px 30px rgba(36,53,74,.07);
+      margin-bottom: 36px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 1320px;
+      font-size: .94rem;
+    }
+
+    th {
+      text-align: left;
+      background: var(--azul);
+      color: var(--branco);
+      padding: 14px 13px;
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      vertical-align: top;
+    }
+
+    td {
+      padding: 13px;
+      border-bottom: 1px solid var(--linha);
+      vertical-align: top;
+    }
+
+    tr:nth-child(even) td {
+      background: #fbfaf7;
+    }
+
+    .ethics {
+      background: var(--azul);
+      color: var(--branco);
+      border-radius: 28px;
+      padding: 28px;
+      margin: 26px 0 50px;
+    }
+
+    .ethics h2 {
+      margin: 0 0 14px;
+      font-size: clamp(1.4rem, 3vw, 2.2rem);
+      letter-spacing: -0.03em;
+    }
+
+    .ethics ul {
+      margin: 14px 0 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .ethics li {
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 18px;
+      padding: 16px;
+    }
+
+    footer {
+      border-top: 1px solid var(--linha);
+      padding: 22px 0 34px;
+      color: var(--toupe-escuro);
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+      font-size: .95rem;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    body.table-mode .cards {
+      display: none;
+    }
+
+    body.table-mode .table-wrap {
+      display: block;
+    }
+
+    @media (max-width: 850px) {
+      .meta-strip {
+        grid-template-columns: 1fr;
+      }
+      .controls-top {
+        grid-template-columns: 1fr;
+      }
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
+      .ethics ul {
+        grid-template-columns: 1fr;
+      }
+      .brand-line {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+
+    @media print {
+      body {
+        background: white;
+      }
+      .controls, .view-buttons {
+        display: none !important;
+      }
+      .hero, .ethics {
+        box-shadow: none;
+      }
+      .tool-card {
+        break-inside: avoid;
+        box-shadow: none;
+      }
+      .page {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="brand-line">
+        <div class="brand-mark"><span class="brand-icon">AF</span> Ana Fonseca | IA na Educação</div>
+        <div>Formação de professores/as de línguas · folha de apoio</div>
+      </div>
+
+      <section class="hero">
+        <div class="hero-content">
+          <p class="eyebrow">Ferramentas digitais e IA generativa</p>
+          <h1>Cartões informativos para professores/as de línguas</h1>
+          <p>Uma síntese prática sobre o que são estas aplicações, o que fazem, como podem ser usadas por professores/formandos/as e alunos/as, e que cuidados exigem em contexto educativo.</p>
+          <div class="meta-strip">
+            <div class="meta-box"><strong>18 ferramentas</strong>IA, pesquisa, avaliação, imagem, áudio, música e vídeo</div>
+            <div class="meta-box"><strong>Foco pedagógico</strong>Ensino de línguas, diferenciação e metodologias ativas</div>
+            <div class="meta-box"><strong>Uso informado</strong>Privacidade, autoria, verificação e intencionalidade</div>
+          </div>
+        </div>
+      </section>
+    </header>
+
+    <section class="notice">
+      <strong>Nota sobre atualização:</strong> estas ferramentas mudam com frequência. Planos gratuitos, limites de créditos, funcionalidades, políticas de privacidade, direitos de uso, idade mínima e condições comerciais podem ser alterados ao longo do tempo. Antes de usar com formandos/as ou alunos/as, confirme sempre as condições atuais.
+    </section>
+
+    <section class="controls" aria-label="Filtros de consulta">
+      <div class="controls-top">
+        <input id="searchBox" type="search" placeholder="Pesquisar ferramenta, categoria ou uso pedagógico..." aria-label="Pesquisar">
+        <div class="view-buttons" aria-label="Alternar vista">
+          <button class="view-btn active" id="cardsView" type="button">Cartões</button>
+          <button class="view-btn" id="tableView" type="button">Tabela</button>
+        </div>
+      </div>
+      <div class="chips">
+        <button class="filter-chip active" data-filter="all">Todas</button>
+        <button class="filter-chip" data-filter="Modelos de linguagem e apoio à produção textual">Modelos de linguagem e apoio à produção textual</button>
+<button class="filter-chip" data-filter="Modelos de linguagem e ecossistema Google">Modelos de linguagem e ecossistema Google</button>
+<button class="filter-chip" data-filter="Pesquisa com IA e fontes">Pesquisa com IA e fontes</button>
+<button class="filter-chip" data-filter="Trabalho com fontes e estudo orientado">Trabalho com fontes e estudo orientado</button>
+<button class="filter-chip" data-filter="Experimentação e comparação de modelos">Experimentação e comparação de modelos</button>
+<button class="filter-chip" data-filter="Avaliação formativa e aprendizagem interativa">Avaliação formativa e aprendizagem interativa</button>
+<button class="filter-chip" data-filter="Apresentações e documentos visuais">Apresentações e documentos visuais</button>
+<button class="filter-chip" data-filter="Visualização de ideias">Visualização de ideias</button>
+<button class="filter-chip" data-filter="Design e recursos visuais">Design e recursos visuais</button>
+<button class="filter-chip" data-filter="Murais colaborativos">Murais colaborativos</button>
+<button class="filter-chip" data-filter="Voz e leitura em voz alta">Voz e leitura em voz alta</button>
+<button class="filter-chip" data-filter="Voz, narração e dobragem">Voz, narração e dobragem</button>
+<button class="filter-chip" data-filter="Música com IA">Música com IA</button>
+<button class="filter-chip" data-filter="Vídeo com avatares e voz IA">Vídeo com avatares e voz IA</button>
+      </div>
+    </section>
+
+    <div class="summary-row">
+      <span><strong id="count">17</strong> ferramentas visíveis</span>
+      <span>Use a pesquisa e os filtros para adaptar a leitura à sessão.</span>
+    </div>
+
+    <main class="cards" id="cards">
+      
+<article class="tool-card" data-category="Modelos de linguagem e apoio à produção textual" data-search="chatgpt modelos de linguagem e apoio à produção textual assistente de ia generativa para conversar, escrever, resumir, rever, criar materiais, analisar imagens/documentos e apoiar tarefas complexas. apoia planificações, diferenciação pedagógica, rubricas, feedback, adaptação de textos, role-play, criação de diálogos, atividades comunicativas e revisão linguística. pode ser usado como tutor de escrita, parceiro de conversação, gerador de perguntas, revisor orientado e apoio à compreensão de textos.">
+  <div class="card-topline">
+    <span class="category-pill">Modelos de linguagem e apoio à produção textual</span>
+  </div>
+  <h3>ChatGPT</h3>
+  <div class="card-grid">
+    <section><h4>O que é / o que faz</h4><p>Assistente de IA generativa para conversar, escrever, resumir, rever, criar materiais, analisar imagens/documentos e apoiar tarefas complexas.</p></section>
+    <section><h4>Para professores/formandos/as de línguas</h4><p>Apoia planificações, diferenciação pedagógica, rubricas, feedback, adaptação de textos, role-play, criação de diálogos, atividades comunicativas e revisão linguística.</p></section>
+    <section><h4>Para alunos/as</h4><p>Pode ser usado como tutor de escrita, parceiro de conversação, gerador de perguntas, revisor orientado e apoio à compreensão de textos.</p></section>
+    <section><h4>Versão gratuita/paga</h4><p>Tem plano gratuito com limites e planos pagos com mais acesso a modelos, ficheiros, imagem, memória, projetos e funcionalidades avançadas.</p></section>
+    <section class="risk"><h4>Limitações e riscos</h4><p>Pode inventar informação, simplificar excessivamente ou dar respostas genéricas. Não deve substituir o esforço do aluno/a. Requer prompts claros, verificação humana e explicitação do processo.</p></section>
+  </div>
+</article>
+
+
+<article class="tool-card" data-category="Modelos de linguagem e apoio à produção textual" data-search="claude modelos de linguagem e apoio à produção textual modelo de linguagem forte em leitura, escrita longa, síntese, revisão, análise de documentos e reformulação de textos. útil para analisar textos extensos, gerar versões graduadas, melhorar instruções, rever rubricas e trabalhar tom, coerência e argumentação. pode apoiar escrita orientada, melhoria de argumentos, reescrita de textos e preparação de apresentações.">
+  <div class="card-topline">
+    <span class="category-pill">Modelos de linguagem e apoio à produção textual</span>
+  </div>
+  <h3>Claude</h3>
+  <div class="card-grid">
+    <section><h4>O que é / o que faz</h4><p>Modelo de linguagem forte em leitura, escrita longa, síntese, revisão, análise de documentos e reformulação de textos.</p></section>
+    <section><h4>Para professores/formandos/as de línguas</h4><p>Útil para analisar textos extensos, gerar versões graduadas, melhorar instruções, rever rubricas e trabalhar tom, coerência e argumentação.</p></section>
+    <section><h4>Para alunos/as</h4><p>Pode apoiar escrita orientada, melhoria de argumentos, reescrita de textos e preparação de apresentações.</p></section>
+    <section><h4>Versão gratuita/paga</h4><p>Existe versão gratuita e planos pagos com maior capacidade e mais funcionalidades.</p></section>
+    <section class="risk"><h4>Limitações e riscos</h4><p>Pode apresentar respostas plausíveis mas erradas. É forte na linguagem, mas não deve ser usado como única fonte factual.</p></section>
+  </div>
+</article>
+
+
+<article class="tool-card" data-category="Modelos de linguagem e ecossistema Google" data-search="gemini modelos de linguagem e ecossistema google assistente de ia da google, integrado no ecossistema google, com geração de texto, imagem, investigação, apoio multimodal e integração com ferramentas google em planos compatíveis. útil para trabalhar com documentos google, criar ideias para atividades, gerar materiais multimodais, apoiar pesquisa e produzir recursos integrados no ecossistema google. pode apoiar pesquisa orientada, brainstorming, vocabulário, explicações, simulações de diálogos e preparação de apresentações.">
+  <div class="card-topline">
+    <span class="category-pill">Modelos de linguagem e ecossistema Google</span>
+  </div>
+  <h3>Gemini</h3>
+  <div class="card-grid">
+    <section><h4>O que é / o que faz</h4><p>Assistente de IA da Google, integrado no ecossistema Google, com geração de texto, imagem, investigação, apoio multimodal e integração com ferramentas Google em planos compatíveis.</p></section>
+    <section><h4>Para professores/formandos/as de línguas</h4><p>Útil para trabalhar com documentos Google, criar ideias para atividades, gerar materiais multimodais, apoiar pesquisa e produzir recursos integrados no ecossistema Google.</p></section>
+    <section><h4>Para alunos/as</h4><p>Pode apoiar pesquisa orientada, brainstorming, vocabulário, explicações, simulações de diálogos e preparação de apresentações.</p></section>
+    <section><h4>Versão gratuita/paga</h4><p>Tem versão gratuita e planos pagos Google AI com diferentes limites, modelos e integrações.</p></section>
+    <section class="risk"><h4>Limitações e riscos</h4><p>Algumas funcionalidades dependem da idade, país, conta e plano. Em contexto escolar, convém usar contas institucionais e regras claras de privacidade.</p></section>
+  </div>
+</article>
+
+
+<article class="tool-card" data-category="Pesquisa com IA e fontes" data-search="perplexity pesquisa com ia e fontes ferramenta de pesquisa com ia que combina resposta sintética com fontes, citações e modelos de linguagem. apoia preparação de temas atuais, recolha de fontes para debates, leitura crítica de notícias e construção de atividades baseadas em informação recente. ajuda a aprender a procurar, comparar fontes, formular perguntas de investigação e distinguir resposta de evidência.">
+  <div class="card-topline">
+    <span class="category-pill">Pesquisa com IA e fontes</span>
+  </div>
+  <h3>Perplexity</h3>
+  <div class="card-grid">
+    <section><h4>O que é / o que faz</h4><p>Ferramenta de pesquisa com IA que combina resposta sintética com fontes, citações e modelos de linguagem.</p></section>
+    <section><h4>Para professores/formandos/as de línguas</h4><p>Apoia preparação de temas atuais, recolha de fontes para debates, leitura crítica de notícias e construção de atividades baseadas em informação recente.</p></section>
+    <section><h4>Para alunos/as</h4><p>Ajuda a aprender a procurar, comparar fontes, formular perguntas de investigação e distinguir resposta de evidência.</p></section>
+    <section><h4>Versão gratuita/paga</h4><p>Tem utilização gratuita e planos pagos com acesso a modelos mais recentes, limites superiores e funcionalidades de pesquisa mais avançadas.</p></section>
+    <section class="risk"><h4>Limitações e riscos</h4><p>Apesar das citações, as fontes devem ser abertas e verificadas. É uma boa ferramenta para literacia informacional, não uma substituição da leitura crítica.</p></section>
+  </div>
+</article>
+
+
+<article class="tool-card" data-category="Trabalho com fontes e estudo orientado" data-search="notebooklm trabalho com fontes e estudo orientado assistente de investigação e escrita baseado em fontes carregadas pelo utilizador, como documentos, notas, pdfs e materiais de estudo. ajuda a transformar textos, artigos, documentos curriculares e materiais de apoio em resumos, perguntas, guiões de estudo e atividades. apoia estudo orientado, compreensão de textos, preparação de apresentações e revisão de fontes fornecidas pelo professor.">
+  <div class="card-topline">
+    <span class="category-pill">Trabalho com fontes e estudo orientado</span>
+  </div>
+  <h3>NotebookLM</h3>
+  <div class="card-grid">
+    <section><h4>O que é / o que faz</h4><p>Assistente de investigação e escrita baseado em fontes carregadas pelo utilizador, como documentos, notas, PDFs e materiais de estudo.</p></section>
+    <section><h4>Para professores/formandos/as de línguas</h4><p>Ajuda a transformar textos, artigos, documentos curriculares e materiais de apoio em resumos, perguntas, guiões de estudo e atividades.</p></section>
+    <section><h4>Para alunos/as</h4><p>Apoia estudo orientado, compreensão de textos, preparação de apresentações e revisão de fontes fornecidas pelo professor.</p></section>
+    <section><h4>Versão gratuita/paga</h4><p>Tem versão base e versão Pro/premium associada a planos Google compatíveis.</p></section>
+    <section class="risk"><h4>Limitações e riscos</h4><p>A qualidade depende das fontes carregadas. Não deve ser usado para carregar dados pessoais de alunos/as, documentos sensíveis ou materiais sem autorização.</p></section>
+  </div>
+</article>
+
+
+<article class="tool-card" data-category="Experimentação e comparação de modelos" data-search="google ai studio experimentação e comparação de modelos ambiente da google para experimentar modelos gemini, testar prompts, multimodalidade e pequenas aplicações com ia. pode demonstrar como se testa um modelo, comparar respostas, criar protótipos simples e explorar voz, imagem, texto e instruções de sistema. mais adequado a alunos/as avançados/as ou do ensino secundário/profissional, em atividades orientadas de criação de chatbots, simulações ou protótipos.">
+  <div class="card-topline">
+    <span class="category-pill">Experimentação e comparação de modelos</span>
+  </div>
+  <h3>Google AI Studio</h3>
+  <div class="card-grid">
+    <section><h4>O que é / o que faz</h4><p>Ambiente da Google para experimentar modelos Gemini, testar prompts, multimodalidade e pequenas aplicações com IA.</p></section>
+    <section><h4>Para professores/formandos/as de línguas</h4><p>Pode demonstrar como se testa um modelo, comparar respostas, criar protótipos simples e explorar voz, imagem, texto e instruções de sistema.</p></section>
+    <section><h4>Para alunos/as</h4><p>Mais adequado a alunos/as avançados/as ou do ensino secundário/profissional, em atividades orientadas de criação de chatbots, simulações ou protótipos.</p></section>
+    <section><h4>Versão gratuita/paga</h4><p>A experimentação pode começar em regime gratuito, mas o uso por API, maior escala, modelos específicos e quotas dependem de limites e faturação.</p></section>
+    <section class="risk"><h4>Limitações e riscos</h4><p>Não é a ferramenta mais simples para professores com baixa proficiência digital. Exige cuidado com chaves API, dados pessoais e publicação de protótipos.</p></section>
+  </div>
+</article>
+
+
+<article class="tool-card" data-category="Experimentação e comparação de modelos" data-search="arena.ai experimentação e comparação de modelos plataforma para comparar respostas de diferentes modelos de ia em modo anónimo, votar na melhor resposta e contribuir para rankings públicos de modelos. muito útil em formação para mostrar que diferentes modelos respondem de forma distinta ao mesmo prompt. permite trabalhar avaliação crítica, qualidade de resposta, critérios de escolha e limites dos llm. pode ser usado, com orientação, para comparar respostas, discutir qualidade, clareza, rigor, adequação linguística e pensamento crítico.">
+  <div class="card-topline">
+    <span class="category-pill">Experimentação e comparação de modelos</span>
+  </div>
+  <h3>Arena.ai</h3>
+  <div class="card-grid">
+    <section><h4>O que é / o que faz</h4><p>Plataforma para comparar respostas de diferentes modelos de IA em modo anónimo, votar na melhor resposta e contribuir para rankings públicos de modelos.</p></section>
+    <section><h4>Para professores/formandos/as de línguas</h4><p>Muito útil em formação para mostrar que diferentes modelos respondem de forma distinta ao mesmo prompt. Permite trabalhar avaliação crítica, qualidade de resposta, critérios de escolha e limites dos LLM.</p></section>
+    <section><h4>Para alunos/as</h4><p>Pode ser usado, com orientação, para comparar respostas, discutir qualidade, clareza, rigor, adequação linguística e pensamento crítico.</p></section>
+    <section><h4>Versão gratuita/paga</h4><p>O uso público permite experimentar e votar; a Arena também oferece avaliações para empresas, laboratórios de modelos e programadores com base em feedback humano real.</p></section>
+    <section class="risk"><h4>Limitações e riscos</h4><p>Não é uma ferramenta especificamente educativa nem uma solução de produção de materiais. Os prompts submetidos podem contribuir para avaliações públicas, pelo que não devem incluir dados pessoais, informação sensível ou trabalhos identificáveis de alunos/as.</p></section>
+  </div>
+</article>
+
+
+<article class="tool-card" data-category="Avaliação formativa e aprendizagem interativa" data-search="wayground — ex-quizizz avaliação formativa e aprendizagem interativa plataforma de atividades interativas, quizzes, lições, flashcards, vídeos interativos e passagens de leitura. permite criar quizzes, exercícios de vocabulário, compreensão oral/escrita, revisão gramatical, atividades assíncronas, avaliação formativa e relatórios simples. os alunos/as entram com código, respondem a atividades, recebem feedback imediato e podem praticar em modo mais lúdico e gamificado.">
+  <div class="card-topline">
+    <span class="category-pill">Avaliação formativa e aprendizagem interativa</span>
+  </div>
+  <h3>Wayground — ex-Quizizz</h3>
+  <div class="card-grid">
+    <section><h4>O que é / o que faz</h4><p>Plataforma de atividades interativas, quizzes, lições, flashcards, vídeos interativos e passagens de leitura.</p></section>
+    <section><h4>Para professores/formandos/as de línguas</h4><p>Permite criar quizzes, exercícios de vocabulário, compreensão oral/escrita, revisão gramatical, atividades assíncronas, avaliação formativa e relatórios simples.</p></section>
+    <section><h4>Para alunos/as</h4><p>Os alunos/as entram com código, respondem a atividades, recebem feedback imediato e podem praticar em modo mais lúdico e gamificado.</p></section>
+    <section><h4>Versão gratuita/paga</h4><p>O plano Basic/Starter é gratuito e permite criar atividades essenciais; planos de escola/distrito desbloqueiam armazenamento ilimitado, mais tipos de pergunta, conteúdos premium, integrações LMS e relatórios mais avançados.</p></section>
+    <section class="risk"><h4>Limitações e riscos</h4><p>Pode favorecer respostas rápidas em vez de reflexão profunda. É necessário cuidar dos dados dos alunos/as, da configuração dos relatórios, da pressão competitiva e da acessibilidade.</p></section>
+  </div>
+</article>
+
+
+<article class="tool-card" data-category="Apresentações e documentos visuais" data-search="gamma apresentações e documentos visuais ferramenta de criação de apresentações, documentos, páginas e conteúdos visuais com ia. serve para criar apresentações, guiões visuais, páginas de apoio, sequências de aula e materiais explicativos. pode ser usado para apresentar projetos, criar portefólios, exposições digitais, apresentações orais e sínteses visuais.">
+  <div class="card-topline">
+    <span class="category-pill">Apresentações e documentos visuais</span>
+  </div>
+  <h3>Gamma</h3>
+  <div class="card-grid">
+    <section><h4>O que é / o que faz</h4><p>Ferramenta de criação de apresentações, documentos, páginas e conteúdos visuais com IA.</p></section>
+    <section><h4>Para professores/formandos/as de línguas</h4><p>Serve para criar apresentações, guiões visuais, páginas de apoio, sequências de aula e materiais explicativos.</p></section>
+    <section><h4>Para alunos/as</h4><p>Pode ser usado para apresentar projetos, criar portefólios, exposições digitais, apresentações orais e sínteses visuais.</p></section>
+    <section><h4>Versão gratuita/paga</h4><p>Tem plano gratuito com limites e planos pagos com mais créditos, remoção de marca e funcionalidades avançadas.</p></section>
+    <section class="risk"><h4>Limitações e riscos</h4><p>Pode gerar apresentações bonitas mas pedagogicamente superficiais. Requer revisão de conteúdo, adequação linguística e controlo da quantidade de texto por slide.</p></section>
+  </div>
+</article>
+
+
+<article class="tool-card" data-category="Visualização de ideias" data-search="napkin ai visualização de ideias ferramenta que transforma texto em esquemas visuais, diagramas, mapas, fluxos e representações gráficas. excelente para transformar conceitos, sequências, critérios de avaliação, estruturas de texto e processos de escrita em visuais claros. apoia mapas de ideias, organização de argumentos, análise de textos, sequências narrativas e preparação de apresentações.">
+  <div class="card-topline">
+    <span class="category-pill">Visualização de ideias</span>
+  </div>
+  <h3>Napkin AI</h3>
+  <div class="card-grid">
+    <section><h4>O que é / o que faz</h4><p>Ferramenta que transforma texto em esquemas visuais, diagramas, mapas, fluxos e representações gráficas.</p></section>
+    <section><h4>Para professores/formandos/as de línguas</h4><p>Excelente para transformar conceitos, sequências, critérios de avaliação, estruturas de texto e processos de escrita em visuais claros.</p></section>
+    <section><h4>Para alunos/as</h4><p>Apoia mapas de ideias, organização de argumentos, análise de textos, sequências narrativas e preparação de apresentações.</p></section>
+    <section><h4>Versão gratuita/paga</h4><p>Tem utilização gratuita com limites e planos pagos com mais funcionalidades, exportações e personalização.</p></section>
+    <section class="risk"><h4>Limitações e riscos</h4><p>É mais forte para visualização do que para rigor conceptual. O professor deve validar a hierarquia das ideias e a terminologia.</p></section>
+  </div>
+</article>
+
+
+<article class="tool-card" data-category="Design e recursos visuais" data-search="canva design e recursos visuais ferramenta de design visual para apresentações, infografias, cartazes, folhas de trabalho, vídeos e materiais de comunicação. permite criar recursos visuais, flashcards, posters, apresentações, fichas, rubricas visuais, infografias e materiais para comunicação escolar. pode ser usado para projetos multimodais, apresentações, campanhas, cartazes, storytelling visual e portefólios.">
+  <div class="card-topline">
+    <span class="category-pill">Design e recursos visuais</span>
+  </div>
+  <h3>Canva</h3>
+  <div class="card-grid">
+    <section><h4>O que é / o que faz</h4><p>Ferramenta de design visual para apresentações, infografias, cartazes, folhas de trabalho, vídeos e materiais de comunicação.</p></section>
+    <section><h4>Para professores/formandos/as de línguas</h4><p>Permite criar recursos visuais, flashcards, posters, apresentações, fichas, rubricas visuais, infografias e materiais para comunicação escolar.</p></section>
+    <section><h4>Para alunos/as</h4><p>Pode ser usado para projetos multimodais, apresentações, campanhas, cartazes, storytelling visual e portefólios.</p></section>
+    <section><h4>Versão gratuita/paga</h4><p>Tem plano gratuito, planos pagos e Canva Education para professores e alunos/as elegíveis.</p></section>
+    <section class="risk"><h4>Limitações e riscos</h4><p>Pode privilegiar o visual em detrimento do conteúdo. Convém definir critérios: clareza, correção linguística, autoria, fontes e acessibilidade.</p></section>
+  </div>
+</article>
+
+
+<article class="tool-card" data-category="Murais colaborativos" data-search="padlet murais colaborativos mural digital colaborativo para recolher ideias, partilhar recursos, organizar respostas, criar portefólios e promover interação. serve para brainstorming, fóruns visuais, recolha de vocabulário, partilha de produções, mural de leitura, peer feedback e exit tickets. apoia escrita curta, resposta a prompts, partilha de imagens/textos/áudios, debate e curadoria de recursos.">
+  <div class="card-topline">
+    <span class="category-pill">Murais colaborativos</span>
+  </div>
+  <h3>Padlet</h3>
+  <div class="card-grid">
+    <section><h4>O que é / o que faz</h4><p>Mural digital colaborativo para recolher ideias, partilhar recursos, organizar respostas, criar portefólios e promover interação.</p></section>
+    <section><h4>Para professores/formandos/as de línguas</h4><p>Serve para brainstorming, fóruns visuais, recolha de vocabulário, partilha de produções, mural de leitura, peer feedback e exit tickets.</p></section>
+    <section><h4>Para alunos/as</h4><p>Apoia escrita curta, resposta a prompts, partilha de imagens/textos/áudios, debate e curadoria de recursos.</p></section>
+    <section><h4>Versão gratuita/paga</h4><p>Tem plano gratuito e planos pagos, com diferentes limites de armazenamento, número de murais e funcionalidades.</p></section>
+    <section class="risk"><h4>Limitações e riscos</h4><p>Deve haver regras de publicação, identificação mínima, moderação e cuidado com imagens, nomes, dados pessoais e comentários entre pares.</p></section>
+  </div>
+</article>
+
+
+<article class="tool-card" data-category="Voz e leitura em voz alta" data-search="luvvoice voz e leitura em voz alta ferramenta de text-to-speech para converter texto em voz, com várias vozes e línguas, permitindo ouvir ou descarregar áudio. pode criar áudios de leitura, apoio à pronúncia, modelos de oralidade, acessibilidade para alunos/as com dificuldades de leitura e treino auditivo. pode ser usado para ouvir textos, comparar pronúncia, treinar leitura em voz alta e rever produções escritas através da escuta.">
+  <div class="card-topline">
+    <span class="category-pill">Voz e leitura em voz alta</span>
+  </div>
+  <h3>Luvvoice</h3>
+  <div class="card-grid">
+    <section><h4>O que é / o que faz</h4><p>Ferramenta de text-to-speech para converter texto em voz, com várias vozes e línguas, permitindo ouvir ou descarregar áudio.</p></section>
+    <section><h4>Para professores/formandos/as de línguas</h4><p>Pode criar áudios de leitura, apoio à pronúncia, modelos de oralidade, acessibilidade para alunos/as com dificuldades de leitura e treino auditivo.</p></section>
+    <section><h4>Para alunos/as</h4><p>Pode ser usado para ouvir textos, comparar pronúncia, treinar leitura em voz alta e rever produções escritas através da escuta.</p></section>
+    <section><h4>Versão gratuita/paga</h4><p>Tem utilização gratuita e planos pagos com diferentes limites e funcionalidades.</p></section>
+    <section class="risk"><h4>Limitações e riscos</h4><p>A naturalidade da voz varia. Deve evitar-se clonar ou simular vozes de pessoas reais sem autorização. Em contexto escolar, é preferível usar vozes sintéticas genéricas.</p></section>
+  </div>
+</article>
+
+
+<article class="tool-card" data-category="Voz, narração e dobragem" data-search="elevenlabs voz, narração e dobragem ferramenta avançada de voz com ia: text-to-speech, speech-to-text, clonagem de voz, efeitos sonoros, dobragem e agentes de voz. muito útil para criar modelos de pronúncia, diálogos, narrações, leitura expressiva, podcasts e recursos de escuta diferenciados. apoia podcasts, dramatizações, treino de oralidade, leitura expressiva e projetos multimodais.">
+  <div class="card-topline">
+    <span class="category-pill">Voz, narração e dobragem</span>
+  </div>
+  <h3>ElevenLabs</h3>
+  <div class="card-grid">
+    <section><h4>O que é / o que faz</h4><p>Ferramenta avançada de voz com IA: text-to-speech, speech-to-text, clonagem de voz, efeitos sonoros, dobragem e agentes de voz.</p></section>
+    <section><h4>Para professores/formandos/as de línguas</h4><p>Muito útil para criar modelos de pronúncia, diálogos, narrações, leitura expressiva, podcasts e recursos de escuta diferenciados.</p></section>
+    <section><h4>Para alunos/as</h4><p>Apoia podcasts, dramatizações, treino de oralidade, leitura expressiva e projetos multimodais.</p></section>
+    <section><h4>Versão gratuita/paga</h4><p>Tem plano gratuito com limites e planos pagos com mais caracteres/minutos, vozes, funcionalidades profissionais e possibilidades de uso comercial.</p></section>
+    <section class="risk"><h4>Limitações e riscos</h4><p>A clonagem de voz é sensível. Não deve ser usada com vozes de alunos/as, colegas ou figuras reais sem consentimento explícito e finalidade legítima.</p></section>
+  </div>
+</article>
+
+
+<article class="tool-card" data-category="Música com IA" data-search="suno música com ia ferramenta de geração de música com ia a partir de prompts, letras, estilos e instruções. pode criar canções, raps, jingles, músicas para memorização de vocabulário, temas gramaticais, cidadania, cultura e projetos criativos. pode ser usado para escrever letras, trabalhar pronúncia, ritmo, vocabulário, storytelling e apresentações criativas.">
+  <div class="card-topline">
+    <span class="category-pill">Música com IA</span>
+  </div>
+  <h3>Suno</h3>
+  <div class="card-grid">
+    <section><h4>O que é / o que faz</h4><p>Ferramenta de geração de música com IA a partir de prompts, letras, estilos e instruções.</p></section>
+    <section><h4>Para professores/formandos/as de línguas</h4><p>Pode criar canções, raps, jingles, músicas para memorização de vocabulário, temas gramaticais, cidadania, cultura e projetos criativos.</p></section>
+    <section><h4>Para alunos/as</h4><p>Pode ser usado para escrever letras, trabalhar pronúncia, ritmo, vocabulário, storytelling e apresentações criativas.</p></section>
+    <section><h4>Versão gratuita/paga</h4><p>Tem plano gratuito com créditos limitados e planos pagos com mais créditos, edição e direitos de uso em determinadas condições.</p></section>
+    <section class="risk"><h4>Limitações e riscos</h4><p>Direitos, autoria e copyright são sensíveis. Deve haver cuidado com publicação, reutilização e atribuição de autoria.</p></section>
+  </div>
+</article>
+
+
+<article class="tool-card" data-category="Música com IA" data-search="mureka.ai música com ia ferramenta de criação musical com ia para gerar músicas, soundtracks, vozes cantadas e faixas a partir de texto, letras ou prompts. útil para criar músicas de apoio a atividades, campanhas, dramatizações, projetos de oralidade ou produtos multimodais. apoia escrita de letras, criação de jingles, storytelling musical e apresentações de projetos.">
+  <div class="card-topline">
+    <span class="category-pill">Música com IA</span>
+  </div>
+  <h3>Mureka.ai</h3>
+  <div class="card-grid">
+    <section><h4>O que é / o que faz</h4><p>Ferramenta de criação musical com IA para gerar músicas, soundtracks, vozes cantadas e faixas a partir de texto, letras ou prompts.</p></section>
+    <section><h4>Para professores/formandos/as de línguas</h4><p>Útil para criar músicas de apoio a atividades, campanhas, dramatizações, projetos de oralidade ou produtos multimodais.</p></section>
+    <section><h4>Para alunos/as</h4><p>Apoia escrita de letras, criação de jingles, storytelling musical e apresentações de projetos.</p></section>
+    <section><h4>Versão gratuita/paga</h4><p>Permite experimentar gratuitamente; planos pagos tendem a aumentar volume, formatos, funcionalidades de exportação e direitos de uso.</p></section>
+    <section class="risk"><h4>Limitações e riscos</h4><p>Mesmo quando há indicação de uso royalty-free ou comercial, é prudente verificar termos, idade mínima, privacidade e condições de publicação.</p></section>
+  </div>
+</article>
+
+
+<article class="tool-card" data-category="Vídeo com avatares e voz IA" data-search="vidnoz vídeo com avatares e voz ia plataforma de criação de vídeo com ia, com avatares, vozes sintéticas, modelos de vídeo, texto-para-vídeo, imagem-para-vídeo e tradução/dobragem. pode criar vídeos explicativos, instruções para tarefas, tutoriais, apresentações breves, vídeos de acolhimento, modelos de oralidade e recursos de apoio a atividades assíncronas. pode apoiar apresentações multimodais, simulações de comunicação, criação de vídeos curtos, projetos de oralidade e treino de pronúncia, desde que com regras claras.">
+  <div class="card-topline">
+    <span class="category-pill">Vídeo com avatares e voz IA</span>
+  </div>
+  <h3>Vidnoz</h3>
+  <div class="card-grid">
+    <section><h4>O que é / o que faz</h4><p>Plataforma de criação de vídeo com IA, com avatares, vozes sintéticas, modelos de vídeo, texto-para-vídeo, imagem-para-vídeo e tradução/dobragem.</p></section>
+    <section><h4>Para professores/formandos/as de línguas</h4><p>Pode criar vídeos explicativos, instruções para tarefas, tutoriais, apresentações breves, vídeos de acolhimento, modelos de oralidade e recursos de apoio a atividades assíncronas.</p></section>
+    <section><h4>Para alunos/as</h4><p>Pode apoiar apresentações multimodais, simulações de comunicação, criação de vídeos curtos, projetos de oralidade e treino de pronúncia, desde que com regras claras.</p></section>
+    <section><h4>Versão gratuita/paga</h4><p>Tem plano gratuito para criação de vídeos com IA e planos pagos com mais créditos, duração/volume, qualidade e funcionalidades avançadas.</p></section>
+    <section class="risk"><h4>Limitações e riscos</h4><p>Riscos acrescidos por envolver imagem, voz e avatares. Não usar para simular pessoas reais, alunos/as ou colegas sem consentimento. Verificar direitos de uso, privacidade, marca de água, qualidade linguística e adequação cultural dos avatares.</p></section>
+  </div>
+</article>
+
+    </main>
+
+    <section class="table-wrap" aria-label="Tabela completa de ferramentas">
+      <table id="toolsTable">
+        <thead>
+          <tr>
+            <th>Categoria</th>
+            <th>Aplicação</th>
+            <th>O que é / o que faz</th>
+            <th>Para professores/formandos/as</th>
+            <th>Para alunos/as</th>
+            <th>Versão gratuita/paga</th>
+            <th>Limitações e riscos</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+<tr data-category="Modelos de linguagem e apoio à produção textual" data-search="chatgpt modelos de linguagem e apoio à produção textual assistente de ia generativa para conversar, escrever, resumir, rever, criar materiais, analisar imagens/documentos e apoiar tarefas complexas. apoia planificações, diferenciação pedagógica, rubricas, feedback, adaptação de textos, role-play, criação de diálogos, atividades comunicativas e revisão linguística. pode ser usado como tutor de escrita, parceiro de conversação, gerador de perguntas, revisor orientado e apoio à compreensão de textos.">
+  <td><span class="category-mini">Modelos de linguagem e apoio à produção textual</span></td>
+  <td><strong>ChatGPT</strong></td>
+  <td>Assistente de IA generativa para conversar, escrever, resumir, rever, criar materiais, analisar imagens/documentos e apoiar tarefas complexas.</td>
+  <td>Apoia planificações, diferenciação pedagógica, rubricas, feedback, adaptação de textos, role-play, criação de diálogos, atividades comunicativas e revisão linguística.</td>
+  <td>Pode ser usado como tutor de escrita, parceiro de conversação, gerador de perguntas, revisor orientado e apoio à compreensão de textos.</td>
+  <td>Tem plano gratuito com limites e planos pagos com mais acesso a modelos, ficheiros, imagem, memória, projetos e funcionalidades avançadas.</td>
+  <td>Pode inventar informação, simplificar excessivamente ou dar respostas genéricas. Não deve substituir o esforço do aluno/a. Requer prompts claros, verificação humana e explicitação do processo.</td>
+</tr>
+
+
+<tr data-category="Modelos de linguagem e apoio à produção textual" data-search="claude modelos de linguagem e apoio à produção textual modelo de linguagem forte em leitura, escrita longa, síntese, revisão, análise de documentos e reformulação de textos. útil para analisar textos extensos, gerar versões graduadas, melhorar instruções, rever rubricas e trabalhar tom, coerência e argumentação. pode apoiar escrita orientada, melhoria de argumentos, reescrita de textos e preparação de apresentações.">
+  <td><span class="category-mini">Modelos de linguagem e apoio à produção textual</span></td>
+  <td><strong>Claude</strong></td>
+  <td>Modelo de linguagem forte em leitura, escrita longa, síntese, revisão, análise de documentos e reformulação de textos.</td>
+  <td>Útil para analisar textos extensos, gerar versões graduadas, melhorar instruções, rever rubricas e trabalhar tom, coerência e argumentação.</td>
+  <td>Pode apoiar escrita orientada, melhoria de argumentos, reescrita de textos e preparação de apresentações.</td>
+  <td>Existe versão gratuita e planos pagos com maior capacidade e mais funcionalidades.</td>
+  <td>Pode apresentar respostas plausíveis mas erradas. É forte na linguagem, mas não deve ser usado como única fonte factual.</td>
+</tr>
+
+
+<tr data-category="Modelos de linguagem e ecossistema Google" data-search="gemini modelos de linguagem e ecossistema google assistente de ia da google, integrado no ecossistema google, com geração de texto, imagem, investigação, apoio multimodal e integração com ferramentas google em planos compatíveis. útil para trabalhar com documentos google, criar ideias para atividades, gerar materiais multimodais, apoiar pesquisa e produzir recursos integrados no ecossistema google. pode apoiar pesquisa orientada, brainstorming, vocabulário, explicações, simulações de diálogos e preparação de apresentações.">
+  <td><span class="category-mini">Modelos de linguagem e ecossistema Google</span></td>
+  <td><strong>Gemini</strong></td>
+  <td>Assistente de IA da Google, integrado no ecossistema Google, com geração de texto, imagem, investigação, apoio multimodal e integração com ferramentas Google em planos compatíveis.</td>
+  <td>Útil para trabalhar com documentos Google, criar ideias para atividades, gerar materiais multimodais, apoiar pesquisa e produzir recursos integrados no ecossistema Google.</td>
+  <td>Pode apoiar pesquisa orientada, brainstorming, vocabulário, explicações, simulações de diálogos e preparação de apresentações.</td>
+  <td>Tem versão gratuita e planos pagos Google AI com diferentes limites, modelos e integrações.</td>
+  <td>Algumas funcionalidades dependem da idade, país, conta e plano. Em contexto escolar, convém usar contas institucionais e regras claras de privacidade.</td>
+</tr>
+
+
+<tr data-category="Pesquisa com IA e fontes" data-search="perplexity pesquisa com ia e fontes ferramenta de pesquisa com ia que combina resposta sintética com fontes, citações e modelos de linguagem. apoia preparação de temas atuais, recolha de fontes para debates, leitura crítica de notícias e construção de atividades baseadas em informação recente. ajuda a aprender a procurar, comparar fontes, formular perguntas de investigação e distinguir resposta de evidência.">
+  <td><span class="category-mini">Pesquisa com IA e fontes</span></td>
+  <td><strong>Perplexity</strong></td>
+  <td>Ferramenta de pesquisa com IA que combina resposta sintética com fontes, citações e modelos de linguagem.</td>
+  <td>Apoia preparação de temas atuais, recolha de fontes para debates, leitura crítica de notícias e construção de atividades baseadas em informação recente.</td>
+  <td>Ajuda a aprender a procurar, comparar fontes, formular perguntas de investigação e distinguir resposta de evidência.</td>
+  <td>Tem utilização gratuita e planos pagos com acesso a modelos mais recentes, limites superiores e funcionalidades de pesquisa mais avançadas.</td>
+  <td>Apesar das citações, as fontes devem ser abertas e verificadas. É uma boa ferramenta para literacia informacional, não uma substituição da leitura crítica.</td>
+</tr>
+
+
+<tr data-category="Trabalho com fontes e estudo orientado" data-search="notebooklm trabalho com fontes e estudo orientado assistente de investigação e escrita baseado em fontes carregadas pelo utilizador, como documentos, notas, pdfs e materiais de estudo. ajuda a transformar textos, artigos, documentos curriculares e materiais de apoio em resumos, perguntas, guiões de estudo e atividades. apoia estudo orientado, compreensão de textos, preparação de apresentações e revisão de fontes fornecidas pelo professor.">
+  <td><span class="category-mini">Trabalho com fontes e estudo orientado</span></td>
+  <td><strong>NotebookLM</strong></td>
+  <td>Assistente de investigação e escrita baseado em fontes carregadas pelo utilizador, como documentos, notas, PDFs e materiais de estudo.</td>
+  <td>Ajuda a transformar textos, artigos, documentos curriculares e materiais de apoio em resumos, perguntas, guiões de estudo e atividades.</td>
+  <td>Apoia estudo orientado, compreensão de textos, preparação de apresentações e revisão de fontes fornecidas pelo professor.</td>
+  <td>Tem versão base e versão Pro/premium associada a planos Google compatíveis.</td>
+  <td>A qualidade depende das fontes carregadas. Não deve ser usado para carregar dados pessoais de alunos/as, documentos sensíveis ou materiais sem autorização.</td>
+</tr>
+
+
+<tr data-category="Experimentação e comparação de modelos" data-search="google ai studio experimentação e comparação de modelos ambiente da google para experimentar modelos gemini, testar prompts, multimodalidade e pequenas aplicações com ia. pode demonstrar como se testa um modelo, comparar respostas, criar protótipos simples e explorar voz, imagem, texto e instruções de sistema. mais adequado a alunos/as avançados/as ou do ensino secundário/profissional, em atividades orientadas de criação de chatbots, simulações ou protótipos.">
+  <td><span class="category-mini">Experimentação e comparação de modelos</span></td>
+  <td><strong>Google AI Studio</strong></td>
+  <td>Ambiente da Google para experimentar modelos Gemini, testar prompts, multimodalidade e pequenas aplicações com IA.</td>
+  <td>Pode demonstrar como se testa um modelo, comparar respostas, criar protótipos simples e explorar voz, imagem, texto e instruções de sistema.</td>
+  <td>Mais adequado a alunos/as avançados/as ou do ensino secundário/profissional, em atividades orientadas de criação de chatbots, simulações ou protótipos.</td>
+  <td>A experimentação pode começar em regime gratuito, mas o uso por API, maior escala, modelos específicos e quotas dependem de limites e faturação.</td>
+  <td>Não é a ferramenta mais simples para professores com baixa proficiência digital. Exige cuidado com chaves API, dados pessoais e publicação de protótipos.</td>
+</tr>
+
+
+<tr data-category="Experimentação e comparação de modelos" data-search="arena.ai experimentação e comparação de modelos plataforma para comparar respostas de diferentes modelos de ia em modo anónimo, votar na melhor resposta e contribuir para rankings públicos de modelos. muito útil em formação para mostrar que diferentes modelos respondem de forma distinta ao mesmo prompt. permite trabalhar avaliação crítica, qualidade de resposta, critérios de escolha e limites dos llm. pode ser usado, com orientação, para comparar respostas, discutir qualidade, clareza, rigor, adequação linguística e pensamento crítico.">
+  <td><span class="category-mini">Experimentação e comparação de modelos</span></td>
+  <td><strong>Arena.ai</strong></td>
+  <td>Plataforma para comparar respostas de diferentes modelos de IA em modo anónimo, votar na melhor resposta e contribuir para rankings públicos de modelos.</td>
+  <td>Muito útil em formação para mostrar que diferentes modelos respondem de forma distinta ao mesmo prompt. Permite trabalhar avaliação crítica, qualidade de resposta, critérios de escolha e limites dos LLM.</td>
+  <td>Pode ser usado, com orientação, para comparar respostas, discutir qualidade, clareza, rigor, adequação linguística e pensamento crítico.</td>
+  <td>O uso público permite experimentar e votar; a Arena também oferece avaliações para empresas, laboratórios de modelos e programadores com base em feedback humano real.</td>
+  <td>Não é uma ferramenta especificamente educativa nem uma solução de produção de materiais. Os prompts submetidos podem contribuir para avaliações públicas, pelo que não devem incluir dados pessoais, informação sensível ou trabalhos identificáveis de alunos/as.</td>
+</tr>
+
+
+<tr data-category="Avaliação formativa e aprendizagem interativa" data-search="wayground — ex-quizizz avaliação formativa e aprendizagem interativa plataforma de atividades interativas, quizzes, lições, flashcards, vídeos interativos e passagens de leitura. permite criar quizzes, exercícios de vocabulário, compreensão oral/escrita, revisão gramatical, atividades assíncronas, avaliação formativa e relatórios simples. os alunos/as entram com código, respondem a atividades, recebem feedback imediato e podem praticar em modo mais lúdico e gamificado.">
+  <td><span class="category-mini">Avaliação formativa e aprendizagem interativa</span></td>
+  <td><strong>Wayground — ex-Quizizz</strong></td>
+  <td>Plataforma de atividades interativas, quizzes, lições, flashcards, vídeos interativos e passagens de leitura.</td>
+  <td>Permite criar quizzes, exercícios de vocabulário, compreensão oral/escrita, revisão gramatical, atividades assíncronas, avaliação formativa e relatórios simples.</td>
+  <td>Os alunos/as entram com código, respondem a atividades, recebem feedback imediato e podem praticar em modo mais lúdico e gamificado.</td>
+  <td>O plano Basic/Starter é gratuito e permite criar atividades essenciais; planos de escola/distrito desbloqueiam armazenamento ilimitado, mais tipos de pergunta, conteúdos premium, integrações LMS e relatórios mais avançados.</td>
+  <td>Pode favorecer respostas rápidas em vez de reflexão profunda. É necessário cuidar dos dados dos alunos/as, da configuração dos relatórios, da pressão competitiva e da acessibilidade.</td>
+</tr>
+
+
+<tr data-category="Apresentações e documentos visuais" data-search="gamma apresentações e documentos visuais ferramenta de criação de apresentações, documentos, páginas e conteúdos visuais com ia. serve para criar apresentações, guiões visuais, páginas de apoio, sequências de aula e materiais explicativos. pode ser usado para apresentar projetos, criar portefólios, exposições digitais, apresentações orais e sínteses visuais.">
+  <td><span class="category-mini">Apresentações e documentos visuais</span></td>
+  <td><strong>Gamma</strong></td>
+  <td>Ferramenta de criação de apresentações, documentos, páginas e conteúdos visuais com IA.</td>
+  <td>Serve para criar apresentações, guiões visuais, páginas de apoio, sequências de aula e materiais explicativos.</td>
+  <td>Pode ser usado para apresentar projetos, criar portefólios, exposições digitais, apresentações orais e sínteses visuais.</td>
+  <td>Tem plano gratuito com limites e planos pagos com mais créditos, remoção de marca e funcionalidades avançadas.</td>
+  <td>Pode gerar apresentações bonitas mas pedagogicamente superficiais. Requer revisão de conteúdo, adequação linguística e controlo da quantidade de texto por slide.</td>
+</tr>
+
+
+<tr data-category="Visualização de ideias" data-search="napkin ai visualização de ideias ferramenta que transforma texto em esquemas visuais, diagramas, mapas, fluxos e representações gráficas. excelente para transformar conceitos, sequências, critérios de avaliação, estruturas de texto e processos de escrita em visuais claros. apoia mapas de ideias, organização de argumentos, análise de textos, sequências narrativas e preparação de apresentações.">
+  <td><span class="category-mini">Visualização de ideias</span></td>
+  <td><strong>Napkin AI</strong></td>
+  <td>Ferramenta que transforma texto em esquemas visuais, diagramas, mapas, fluxos e representações gráficas.</td>
+  <td>Excelente para transformar conceitos, sequências, critérios de avaliação, estruturas de texto e processos de escrita em visuais claros.</td>
+  <td>Apoia mapas de ideias, organização de argumentos, análise de textos, sequências narrativas e preparação de apresentações.</td>
+  <td>Tem utilização gratuita com limites e planos pagos com mais funcionalidades, exportações e personalização.</td>
+  <td>É mais forte para visualização do que para rigor conceptual. O professor deve validar a hierarquia das ideias e a terminologia.</td>
+</tr>
+
+
+<tr data-category="Design e recursos visuais" data-search="canva design e recursos visuais ferramenta de design visual para apresentações, infografias, cartazes, folhas de trabalho, vídeos e materiais de comunicação. permite criar recursos visuais, flashcards, posters, apresentações, fichas, rubricas visuais, infografias e materiais para comunicação escolar. pode ser usado para projetos multimodais, apresentações, campanhas, cartazes, storytelling visual e portefólios.">
+  <td><span class="category-mini">Design e recursos visuais</span></td>
+  <td><strong>Canva</strong></td>
+  <td>Ferramenta de design visual para apresentações, infografias, cartazes, folhas de trabalho, vídeos e materiais de comunicação.</td>
+  <td>Permite criar recursos visuais, flashcards, posters, apresentações, fichas, rubricas visuais, infografias e materiais para comunicação escolar.</td>
+  <td>Pode ser usado para projetos multimodais, apresentações, campanhas, cartazes, storytelling visual e portefólios.</td>
+  <td>Tem plano gratuito, planos pagos e Canva Education para professores e alunos/as elegíveis.</td>
+  <td>Pode privilegiar o visual em detrimento do conteúdo. Convém definir critérios: clareza, correção linguística, autoria, fontes e acessibilidade.</td>
+</tr>
+
+
+<tr data-category="Murais colaborativos" data-search="padlet murais colaborativos mural digital colaborativo para recolher ideias, partilhar recursos, organizar respostas, criar portefólios e promover interação. serve para brainstorming, fóruns visuais, recolha de vocabulário, partilha de produções, mural de leitura, peer feedback e exit tickets. apoia escrita curta, resposta a prompts, partilha de imagens/textos/áudios, debate e curadoria de recursos.">
+  <td><span class="category-mini">Murais colaborativos</span></td>
+  <td><strong>Padlet</strong></td>
+  <td>Mural digital colaborativo para recolher ideias, partilhar recursos, organizar respostas, criar portefólios e promover interação.</td>
+  <td>Serve para brainstorming, fóruns visuais, recolha de vocabulário, partilha de produções, mural de leitura, peer feedback e exit tickets.</td>
+  <td>Apoia escrita curta, resposta a prompts, partilha de imagens/textos/áudios, debate e curadoria de recursos.</td>
+  <td>Tem plano gratuito e planos pagos, com diferentes limites de armazenamento, número de murais e funcionalidades.</td>
+  <td>Deve haver regras de publicação, identificação mínima, moderação e cuidado com imagens, nomes, dados pessoais e comentários entre pares.</td>
+</tr>
+
+
+<tr data-category="Voz e leitura em voz alta" data-search="luvvoice voz e leitura em voz alta ferramenta de text-to-speech para converter texto em voz, com várias vozes e línguas, permitindo ouvir ou descarregar áudio. pode criar áudios de leitura, apoio à pronúncia, modelos de oralidade, acessibilidade para alunos/as com dificuldades de leitura e treino auditivo. pode ser usado para ouvir textos, comparar pronúncia, treinar leitura em voz alta e rever produções escritas através da escuta.">
+  <td><span class="category-mini">Voz e leitura em voz alta</span></td>
+  <td><strong>Luvvoice</strong></td>
+  <td>Ferramenta de text-to-speech para converter texto em voz, com várias vozes e línguas, permitindo ouvir ou descarregar áudio.</td>
+  <td>Pode criar áudios de leitura, apoio à pronúncia, modelos de oralidade, acessibilidade para alunos/as com dificuldades de leitura e treino auditivo.</td>
+  <td>Pode ser usado para ouvir textos, comparar pronúncia, treinar leitura em voz alta e rever produções escritas através da escuta.</td>
+  <td>Tem utilização gratuita e planos pagos com diferentes limites e funcionalidades.</td>
+  <td>A naturalidade da voz varia. Deve evitar-se clonar ou simular vozes de pessoas reais sem autorização. Em contexto escolar, é preferível usar vozes sintéticas genéricas.</td>
+</tr>
+
+
+<tr data-category="Voz, narração e dobragem" data-search="elevenlabs voz, narração e dobragem ferramenta avançada de voz com ia: text-to-speech, speech-to-text, clonagem de voz, efeitos sonoros, dobragem e agentes de voz. muito útil para criar modelos de pronúncia, diálogos, narrações, leitura expressiva, podcasts e recursos de escuta diferenciados. apoia podcasts, dramatizações, treino de oralidade, leitura expressiva e projetos multimodais.">
+  <td><span class="category-mini">Voz, narração e dobragem</span></td>
+  <td><strong>ElevenLabs</strong></td>
+  <td>Ferramenta avançada de voz com IA: text-to-speech, speech-to-text, clonagem de voz, efeitos sonoros, dobragem e agentes de voz.</td>
+  <td>Muito útil para criar modelos de pronúncia, diálogos, narrações, leitura expressiva, podcasts e recursos de escuta diferenciados.</td>
+  <td>Apoia podcasts, dramatizações, treino de oralidade, leitura expressiva e projetos multimodais.</td>
+  <td>Tem plano gratuito com limites e planos pagos com mais caracteres/minutos, vozes, funcionalidades profissionais e possibilidades de uso comercial.</td>
+  <td>A clonagem de voz é sensível. Não deve ser usada com vozes de alunos/as, colegas ou figuras reais sem consentimento explícito e finalidade legítima.</td>
+</tr>
+
+
+<tr data-category="Música com IA" data-search="suno música com ia ferramenta de geração de música com ia a partir de prompts, letras, estilos e instruções. pode criar canções, raps, jingles, músicas para memorização de vocabulário, temas gramaticais, cidadania, cultura e projetos criativos. pode ser usado para escrever letras, trabalhar pronúncia, ritmo, vocabulário, storytelling e apresentações criativas.">
+  <td><span class="category-mini">Música com IA</span></td>
+  <td><strong>Suno</strong></td>
+  <td>Ferramenta de geração de música com IA a partir de prompts, letras, estilos e instruções.</td>
+  <td>Pode criar canções, raps, jingles, músicas para memorização de vocabulário, temas gramaticais, cidadania, cultura e projetos criativos.</td>
+  <td>Pode ser usado para escrever letras, trabalhar pronúncia, ritmo, vocabulário, storytelling e apresentações criativas.</td>
+  <td>Tem plano gratuito com créditos limitados e planos pagos com mais créditos, edição e direitos de uso em determinadas condições.</td>
+  <td>Direitos, autoria e copyright são sensíveis. Deve haver cuidado com publicação, reutilização e atribuição de autoria.</td>
+</tr>
+
+
+<tr data-category="Música com IA" data-search="mureka.ai música com ia ferramenta de criação musical com ia para gerar músicas, soundtracks, vozes cantadas e faixas a partir de texto, letras ou prompts. útil para criar músicas de apoio a atividades, campanhas, dramatizações, projetos de oralidade ou produtos multimodais. apoia escrita de letras, criação de jingles, storytelling musical e apresentações de projetos.">
+  <td><span class="category-mini">Música com IA</span></td>
+  <td><strong>Mureka.ai</strong></td>
+  <td>Ferramenta de criação musical com IA para gerar músicas, soundtracks, vozes cantadas e faixas a partir de texto, letras ou prompts.</td>
+  <td>Útil para criar músicas de apoio a atividades, campanhas, dramatizações, projetos de oralidade ou produtos multimodais.</td>
+  <td>Apoia escrita de letras, criação de jingles, storytelling musical e apresentações de projetos.</td>
+  <td>Permite experimentar gratuitamente; planos pagos tendem a aumentar volume, formatos, funcionalidades de exportação e direitos de uso.</td>
+  <td>Mesmo quando há indicação de uso royalty-free ou comercial, é prudente verificar termos, idade mínima, privacidade e condições de publicação.</td>
+</tr>
+
+
+<tr data-category="Vídeo com avatares e voz IA" data-search="vidnoz vídeo com avatares e voz ia plataforma de criação de vídeo com ia, com avatares, vozes sintéticas, modelos de vídeo, texto-para-vídeo, imagem-para-vídeo e tradução/dobragem. pode criar vídeos explicativos, instruções para tarefas, tutoriais, apresentações breves, vídeos de acolhimento, modelos de oralidade e recursos de apoio a atividades assíncronas. pode apoiar apresentações multimodais, simulações de comunicação, criação de vídeos curtos, projetos de oralidade e treino de pronúncia, desde que com regras claras.">
+  <td><span class="category-mini">Vídeo com avatares e voz IA</span></td>
+  <td><strong>Vidnoz</strong></td>
+  <td>Plataforma de criação de vídeo com IA, com avatares, vozes sintéticas, modelos de vídeo, texto-para-vídeo, imagem-para-vídeo e tradução/dobragem.</td>
+  <td>Pode criar vídeos explicativos, instruções para tarefas, tutoriais, apresentações breves, vídeos de acolhimento, modelos de oralidade e recursos de apoio a atividades assíncronas.</td>
+  <td>Pode apoiar apresentações multimodais, simulações de comunicação, criação de vídeos curtos, projetos de oralidade e treino de pronúncia, desde que com regras claras.</td>
+  <td>Tem plano gratuito para criação de vídeos com IA e planos pagos com mais créditos, duração/volume, qualidade e funcionalidades avançadas.</td>
+  <td>Riscos acrescidos por envolver imagem, voz e avatares. Não usar para simular pessoas reais, alunos/as ou colegas sem consentimento. Verificar direitos de uso, privacidade, marca de água, qualidade linguística e adequação cultural dos avatares.</td>
+</tr>
+
+        </tbody>
+      </table>
+    </section>
+
+    <section class="ethics">
+      <h2>Cuidados comuns em contexto educativo</h2>
+      <p>Antes de integrar qualquer ferramenta, garanta que a tecnologia serve uma intenção pedagógica clara e que os alunos/as compreendem o que estão a fazer, porquê e com que limites.</p>
+      <ul>
+        <li><strong>Privacidade</strong><br>Não introduzir dados pessoais de alunos/as.</li>
+        <li><strong>Verificação</strong><br>Confirmar informação gerada por IA antes de a usar.</li>
+        <li><strong>Transparência</strong><br>Explicitar quando e como a IA foi usada.</li>
+        <li><strong>Pedagogia</strong><br>Evitar usar tecnologia apenas pelo efeito visual ou novidade.</li>
+      </ul>
+    </section>
+
+    <footer>
+      <div><strong>Ana Fonseca | IA na Educação</strong></div>
+      <div>Folha de apoio · formação de professores/as de línguas · 2026</div>
+    </footer>
+  </div>
+
+  <script>
+    const searchBox = document.getElementById('searchBox');
+    const chips = Array.from(document.querySelectorAll('.filter-chip'));
+    const cards = Array.from(document.querySelectorAll('.tool-card'));
+    const rows = Array.from(document.querySelectorAll('tbody tr'));
+    const count = document.getElementById('count');
+    const cardsView = document.getElementById('cardsView');
+    const tableView = document.getElementById('tableView');
+    let activeFilter = 'all';
+
+    function normalise(text) {
+      return (text || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    }
+
+    function applyFilters() {
+      const query = normalise(searchBox.value);
+      let visibleCount = 0;
+
+      function matches(el) {
+        const category = el.dataset.category;
+        const haystack = normalise(el.dataset.search);
+        const categoryOk = activeFilter === 'all' || category === activeFilter;
+        const queryOk = !query || haystack.includes(query);
+        return categoryOk && queryOk;
+      }
+
+      cards.forEach(card => {
+        const ok = matches(card);
+        card.classList.toggle('hidden', !ok);
+        if (ok) visibleCount++;
+      });
+
+      rows.forEach(row => {
+        const ok = matches(row);
+        row.classList.toggle('hidden', !ok);
+      });
+
+      count.textContent = visibleCount;
+    }
+
+    chips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        chips.forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        activeFilter = chip.dataset.filter;
+        applyFilters();
+      });
+    });
+
+    searchBox.addEventListener('input', applyFilters);
+
+    cardsView.addEventListener('click', () => {
+      document.body.classList.remove('table-mode');
+      cardsView.classList.add('active');
+      tableView.classList.remove('active');
+    });
+
+    tableView.addEventListener('click', () => {
+      document.body.classList.add('table-mode');
+      tableView.classList.add('active');
+      cardsView.classList.remove('active');
+    });
+
+    applyFilters();
+  </script>
+</body>
+</html>
