@@ -10,3 +10,12 @@ Inclui sínteses sobre:
 - limitações, riscos e cuidados éticos.
 
 Autoria: Ana Fonseca | IA na Educação
+
+## Licença
+
+Este recurso educativo está licenciado sob a licença  
+**Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International — CC BY-NC-SA 4.0**.
+
+Pode ser partilhado e adaptado para fins não comerciais, com atribuição a:
+
+**Ana Fonseca | IA na Educação**
